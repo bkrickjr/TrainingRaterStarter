@@ -22,5 +22,6 @@ if (CONFIG.app == 'dev') {
 
 
 app.get('/sessions', sessions.getAll)
+app.get('/sessions/:sessionId', sessions.get)
 
 module.exports = app;

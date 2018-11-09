@@ -10,4 +10,19 @@ const getAll = (req, res) => {
 
     return res.json(sessions);
 }
-module.export.getAll = getAll;
+module.exports.getAll = getAll;
+
+const get = (req, res) => {
+    let sessionId = parseInt(req.params.sessionId)
+    res.setHeader('Content-Type', 'application/json');
+    let sessions = [{ Id: 1, Name: 'John Teaches Angular', Location: 'Miles-U 1' },
+    { Id: 2, Name: 'Scott Teaches AWS', Location: 'Miles-U 2' },
+    { Id: 3, Name: 'Jack Teaches PODIS', Location: 'Jacks Desk' },
+    ];
+
+    let session = sessions.find(obj => obj.Id === sessionId);
+    console.log(session);
+    return res.json(session);
+}
+module.exports.get = get;
+
