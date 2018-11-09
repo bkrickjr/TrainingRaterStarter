@@ -1,5 +1,6 @@
-const express = require('express');
 require('./config/config');
+require('./global_functions');
+const express = require('express');
 const models = require('./models');
 const sessions = require('./controllers/SessionsController')
 
