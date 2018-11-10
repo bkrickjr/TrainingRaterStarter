@@ -1,3 +1,5 @@
+pe = require('parse-error');
+
 to = function(promise) {
     return promise
     .then(data =>{
