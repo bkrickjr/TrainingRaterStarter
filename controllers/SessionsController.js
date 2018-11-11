@@ -11,7 +11,7 @@ const getAll = async (req, res) => {
         };
     }
 
-    [err, sessions] = await to(Sessions.findAll({where: whereStatement}))
+    [err, sessions] = await to(Sessions.findAll({where: whereStatement}));
    
     return res.json(sessions);
 }
@@ -22,7 +22,7 @@ const get = async (req, res) => {
     let sessionId = parseInt(req.params.sessionId)
     res.setHeader('Content-Type', 'application/json');
     
-    [err, session] = await to(Sessions.findById({sessionId}))
+    [err, session] = await to(Sessions.findOne({where: sessionId}))
     if (!session) {
         res.statusCode = 404;
         return res.json({success:false, error: err});
@@ -33,8 +33,7 @@ module.exports.get = get;
 
 const update = async function (req, res) {
     let err, session, data;
-    data = req.body;
-  
+    data = req.body;  
   
     [err, session] = await to(Sessions.update(data, {
       where: {
@@ -51,7 +50,7 @@ const update = async function (req, res) {
       return res.json({ success: false, error: err });
     }
   
-    return res;
+    return res.json(session);
   }
   module.exports.update = update;
   
