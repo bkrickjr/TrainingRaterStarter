@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Sessions', {
+    return queryInterface.createTable('UsersBests', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -9,15 +9,13 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        allowNull: false,
         type: Sequelize.STRING
       },
-      startTime: {
-        allowNull: false,
+      signUpDate: {
         type: Sequelize.DATE
       },
-      location: {
-        type: Sequelize.STRING
+      sessionsCompleted: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -30,6 +28,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Sessions');
+    return queryInterface.dropTable('UsersBests');
   }
 };
