@@ -10,6 +10,14 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ entended: false }));
 
+// CORS
+app.use(function (req, res, next) {
+  // Webite you wish to allow to connect
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  // Pass to next layer of middleware
+  next();
+});
+
 app.get( '/', (req, res) => { res.send("Helloworld!") } );
 
 models.sequelize        //accessing models\index.js which is exporting sequelize
@@ -24,7 +32,6 @@ models.sequelize        //accessing models\index.js which is exporting sequelize
 if (CONFIG.app == 'dev') {
     models.sequelize.sync();
 }
-
 
 app.get('/sessions', sessions.getAll)
 app.get('/sessions/:sessionId', sessions.get)
