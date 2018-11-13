@@ -1,14 +1,23 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+
+export interface IUser {
+    id: number;
+    name: string;
+    signUpDate: string;
+    sessionsCompleted: number;
+    createdAt: string;
+    updatedAt: string;
+}
 
 @Injectable()
 export class UserService {
-    usersMock = [ { Name: 'Brian Krick', SessionsCompleted: '0'},
-    { Name: 'Future Brian Krick', SessionsCompleted: '1'},
-    { Name: 'Even Further Future Brian Krick', SessionsCompleted: '3'}
-    ];
-    constructor() { }
+    constructor(
+    private http: HttpClient,
+    ) { }
 
-    getUsers(): {}[] {
-        return this.usersMock;
+    getUsers(): Observable<IUser[]> {
+        return this.http.get<IUser[]>('http://localhost:3000/users');
     }
 }

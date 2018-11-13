@@ -6,26 +6,25 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { UserService } from './users/users.service';
-import { UsersListComponent } from './users/users-list/users-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SessionsModule } from './sessions/sessions.module';
+import { UsersModule } from './users/users.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    UsersListComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     SessionsModule,
+    UsersModule,
     AppRoutingModule,
     NgbModule
   ],
-  providers: [UserService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
