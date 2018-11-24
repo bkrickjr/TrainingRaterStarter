@@ -1,7 +1,7 @@
 Session detail page
-[ ] - display a session from the db 
-[ ] - update that session on save (update)
-[ ] -- service update call
+[X] - display a session from the db 
+[X] - update that session on save (update)
+[X] -- service update call
 [ ] - save a new session (create)
 [ ] -- service create call
 [X] - route for this page

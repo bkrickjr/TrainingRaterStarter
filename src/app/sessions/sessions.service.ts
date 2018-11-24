@@ -9,7 +9,7 @@ export interface ISession {
   startTime: string;
   createdAt: string;
   updatedAt: string;
-}
+} // interface end
 
 @Injectable()
 export class SessionsService {
@@ -19,9 +19,17 @@ export class SessionsService {
 
   getSessions(): Observable<ISession[]> {
     return this.http.get<ISession[]>('http://localhost:3000/sessions');
-  }
+  } // getSessions end
 
   getSessionById(id: number): Observable<ISession> {
     return this.http.get<ISession>(`http://localhost:3000/sessions/${id}`);
-  }
-}
+  } // getSessionById end
+
+  save(session: ISession): Observable<ISession | number[]> {
+    if (session.id) {
+      return this.http.put<number[]>('http://localhost:3000/sessions', session);
+    } else {
+      return this.http.post<ISession>('http://localhost:3000/sessions', session);
+    } // if end
+  } // save end
+} // class end

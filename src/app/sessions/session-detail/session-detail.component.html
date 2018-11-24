@@ -8,7 +8,7 @@
         <label>Location</label>
         <input type="text" class="form-control" [(ngModel)]="session.location" />
         <br >
-        <button class="btn btn-primary">Save</button>
+        <button class="btn btn-primary" (click)="save()">Save</button>
         <button class="btn btn-default" (click)="cancel()">Cancel</button>
     </div>
   </div>
