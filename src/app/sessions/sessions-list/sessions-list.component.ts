@@ -24,4 +24,8 @@ export class SessionsListComponent implements OnInit {
   goToAdd(): void {
     this.router.navigate(['sessions/add']);
   }
+
+  goToEdit(id: number): void {
+    this.router.navigate([`sessions/${id}`]);
+  }
 }
