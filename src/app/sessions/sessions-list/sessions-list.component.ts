@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { SessionsService, ISession} from '../sessions.service';
 
@@ -9,13 +10,18 @@ import { SessionsService, ISession} from '../sessions.service';
 export class SessionsListComponent implements OnInit {
   sessions: ISession[] = [
   ];
-  constructor(private sessionsService: SessionsService) { }
+  constructor(
+    private sessionsService: SessionsService,
+    private router: Router
+    ) { }
 
   ngOnInit() {
     this.sessionsService.getSessions().subscribe(
       (sessions) => this.sessions = sessions
       );
-    // this.sessions = this.sessionsService.getSessions();
   }
 
+  goToAdd(): void {
+    this.router.navigate(['sessions/add']);
+  }
 }

@@ -6,7 +6,7 @@ Session detail page
 [ ] -- service create call
 [X] - route for this page
 [X] -- the route should tell me when session I'm working with
-[ ] - trigger this route from the session list page
+[X] - trigger this route from the session list page
 [ ] -- add new button will route to the detail page with 
 [ ] --- some kinda blank or new indicator
 [ ] -- click on the row to edit it
