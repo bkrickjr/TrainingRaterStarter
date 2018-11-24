@@ -1,1 +1,15 @@
-<div>Here is the detail!</div>
+<div class="row">
+  <div class="col-md-6">
+    <div *ngIf="this.session" class="well well-sm">
+        <h4>Session Detail</h4>
+        <label>Name</label>
+        <input type="text" class="form-control" [(ngModel)]="session.name" />
+
+        <label>Location</label>
+        <input type="text" class="form-control" [(ngModel)]="session.location" />
+        <br >
+        <button class="btn btn-primary">Save</button>
+        <button class="btn btn-default" (click)="cancel()">Cancel</button>
+    </div>
+  </div>
+</div>

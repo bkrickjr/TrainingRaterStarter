@@ -7,6 +7,6 @@ Session detail page
 [X] - route for this page
 [X] -- the route should tell me when session I'm working with
 [X] - trigger this route from the session list page
-[ ] -- add new button will route to the detail page with 
-[ ] --- some kinda blank or new indicator
-[ ] -- click on the row to edit it
+[X] -- add new button will route to the detail page with 
+[X] --- some kinda blank or new indicator
+[X] -- click on the row to edit it
