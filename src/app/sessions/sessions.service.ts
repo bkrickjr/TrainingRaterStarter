@@ -15,7 +15,7 @@ export interface ISession {
 export class SessionsService {
     constructor(
     private http: HttpClient,
-  ) { }
+  ) { } // constructor end
 
   getSessions(): Observable<ISession[]> {
     return this.http.get<ISession[]>('http://localhost:3000/sessions');
