@@ -8,7 +8,7 @@ import { SessionsDetailComponent } from './sessions/session-detail/session-detai
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'sessions', component: SessionsListComponent },
-  { path: 'sessions/detail', component: SessionsDetailComponent },
+  { path: 'sessions/:sessionId', component: SessionsDetailComponent },
   { path: 'users', component: UsersListComponent}
 ];
 
