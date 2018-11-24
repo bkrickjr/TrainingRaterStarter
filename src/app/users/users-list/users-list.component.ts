@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { UserService, IUser } from '../users.service';
 
@@ -7,15 +8,23 @@ import { UserService, IUser } from '../users.service';
   styleUrls: ['./users-list.component.less']
 })
 export class UsersListComponent implements OnInit {
-  users: IUser[] = [
-  ];
-  constructor(private userService: UserService) { }
+  users: IUser[] = [];
+  constructor(
+    private userService: UserService,
+    private router: Router
+    ) { } // constructor end
 
   ngOnInit() {
     this.userService.getUsers().subscribe(
       (users) => this.users = users
     );
-    // this.users = this.userService.getUsers();
-  }
+  } // ngOnInit end
 
-}
+  goToAdd(): void {
+    this.router.navigate(['users/add']);
+  } // goToAdd end
+
+  goToEdit(id: number): void {
+    this.router.navigate([`users/${id}`]);
+  } // goToEdit end
+} // class end

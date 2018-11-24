@@ -1,1 +1,19 @@
-Here is the user detail
+<div class="row">
+  <div class="col-md-6">
+    <div *ngIf="this.user" class="well well-sm">
+      <h4>User Detail</h4>
+      <label>Name</label>
+      <input type="text" class="form-control" [(ngModel)]="user.name" />
+
+      <label>Sessions Completed</label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="user.sessionsCompleted"
+      />
+      <br />
+      <button class="btn btn-primary" (click)="save()">Save</button>
+      <button class="btn btn-default" (click)="cancel()">Cancel</button>
+    </div>
+  </div>
+</div>
