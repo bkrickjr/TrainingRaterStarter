@@ -1,0 +1,4 @@
+[\] - create user detail page
+[\] - setup parameter based routing to the user detail page
+[] - update the session list to have a button for adding a user and editing users in the list
+[\] - update the service to handle save making use of create and update API endpoints
