@@ -2,7 +2,7 @@ Session Rating Componet
 
 [] display the average Rating
 [] rate the Session
-[/] service to work with ratings, well use mock data for now
+[X] service to work with ratings, well use mock data for now
 [/] component should work for detail and list page
 [] no routing for this, impletmented via selector
 [] select dropdown (1, 2, ...)
