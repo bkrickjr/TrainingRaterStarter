@@ -10,7 +10,9 @@ export class SessionsRatingComponent implements OnInit {
   // Input says 'look at the element that spawned me and if there is a property called sessionId grab that value'
   @Input() sessionId: number;
 
+  hasBeenRatedByUser: boolean;
   avgRating: number;
+  ratingMode = false;
   selectedRating: number;
   ratings: {value: number, name: string}[] = [
     {value: 1, name: '1 star'},
@@ -27,12 +29,18 @@ export class SessionsRatingComponent implements OnInit {
 
   ngOnInit() {
     this.getAvgRating();
+    this.ratingService.hasBeenRatedByUser(1, this.sessionId)
+      .subscribe((hasBeenRated) => this.hasBeenRatedByUser = hasBeenRated);
   } // ngOnInit end
 
   getAvgRating(): void {
     this.ratingService.getAvgRating(this.sessionId)
       .subscribe((avgRating) => this.avgRating = avgRating);
   } // getAvgRating end
+
+  stopTheClick(event: Event): void {
+    event.stopPropagation();
+  } // stopTheClick() end
 
   submit() {
     const rating: ISessionRating = {
@@ -45,6 +53,8 @@ export class SessionsRatingComponent implements OnInit {
       .subscribe(() => {
         this.toastManager.success('Rating submitted');
         this.getAvgRating();
+        this.ratingMode = false;
+        this.hasBeenRatedByUser = true;
       });
   } // submit end
 } // class end

@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 // tslint:disable-next-line:import-blacklist
 import { Observable } from 'rxjs';
-import { ValueTransformer } from '@angular/compiler/src/util';
+
+export type RatingValue = 1 | 2 | 3 | 4 | 5;
 
 export interface ISessionRating {
   userId: number;
@@ -34,9 +35,17 @@ export class SessionRatingsService {
         return Observable.of(null);
       }
 
-      const sum = ratings.reduce((prev, current) => current += prev);
-      const avg = sum / ratings.length;
+    let sum = 0;
+    ratings.forEach((rating: number) => sum += rating);
+    const avg = sum / ratings.length;
     return Observable.of(avg);
+  }
+
+  hasBeenRatedByUser(userId: number, sessionId: number): Observable<boolean> {
+    const hasBeenRated = this.ratings.some(
+      (rating) => rating.userId === userId && rating.sessionId === sessionId,
+    );
+    return Observable.of(hasBeenRated);
   }
 
   getRatings(sessionId: number): Observable<ISessionRating[]> {

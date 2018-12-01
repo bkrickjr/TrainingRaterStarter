@@ -1,9 +1,9 @@
 Session Rating Componet
 
 [X] display the average Rating
-[/] rate the Session - dont let the same user rate a session over and over
+[X] rate the Session - dont let the same user rate a session over and over
 [X] service to work with ratings, well use mock data for now
-[/] component should work for detail and list page
+[X] component should work for detail and list page
 [X] no routing for this, impletmented via selector
 [X] select dropdown (1, 2, ...)
 [X] get it working
