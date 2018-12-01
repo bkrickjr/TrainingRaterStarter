@@ -12,4 +12,9 @@
         <button class="btn btn-default" (click)="cancel()">Cancel</button>
     </div>
   </div>
+  <div class="col-md-6">
+      <div *ngIf="this.session" class="well well-sm">
+        <app-session-rating></app-session-rating>
+      </div>
+  </div>
 </div>

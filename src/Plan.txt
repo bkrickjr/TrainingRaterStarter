@@ -1,4 +1,9 @@
-[X] - create user detail page
-[X] - setup parameter based routing to the user detail page
-[X] - update the user* list to have a button for adding a user and editing users in the list
-[X] - update the service to handle save making use of create and update API endpoints
+Session Rating Componet
+
+[] display the average Rating
+[] rate the Session
+[/] service to work with ratings, well use mock data for now
+[/] component should work for detail and list page
+[] no routing for this, impletmented via selector
+[] select dropdown (1, 2, ...)
+[] get it working
