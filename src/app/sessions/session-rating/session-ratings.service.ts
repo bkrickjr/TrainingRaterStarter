@@ -21,13 +21,19 @@ export class SessionRatingsService {
   ) { } // constructor end
 
   getAvgRating(sessionId: number): Observable<number> {
-    const ratings = this.ratings
       // filter gets passed a function to tell the ratings if they should be included or not
+      // then map the rating of type ISessionRating into just the number value of the rating
+    const ratings = this.ratings
       .filter(
         (ratingObj) => ratingObj.sessionId === sessionId
-      ).map(  // now change the rating of type ISessionRating into just the number value of the rating
+      ).map(
         (ratingObj: ISessionRating) => ratingObj.rating,
       );
+
+      if (!this.ratings.length) {
+        return Observable.of(null);
+      }
+
       const sum = ratings.reduce((prev, current) => current += prev);
       const avg = sum / ratings.length;
     return Observable.of(avg);

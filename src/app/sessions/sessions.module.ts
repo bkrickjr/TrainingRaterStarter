@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+
 import { SessionsService } from './sessions.service';
+import { SessionRatingsService } from './session-rating/session-ratings.service';
+
 import { SessionsListComponent } from './sessions-list/sessions-list.component';
 import { SessionsRatingComponent } from './session-rating/session-rating.component';
 import { SessionsDetailComponent } from './session-detail/session-detail.component';
@@ -10,7 +13,7 @@ import { SessionsDetailComponent } from './session-detail/session-detail.compone
   declarations: [
       SessionsListComponent,
       SessionsDetailComponent,
-      SessionsRatingComponent
+      SessionsRatingComponent,
   ],
   imports: [
       CommonModule,
@@ -18,6 +21,7 @@ import { SessionsDetailComponent } from './session-detail/session-detail.compone
   ],
   providers: [
       SessionsService,
+      SessionRatingsService,
   ],
 })
 export class SessionsModule { }
