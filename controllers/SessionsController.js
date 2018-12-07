@@ -40,6 +40,7 @@ const update = async function (req, res) {
         id: data.id
       }
     }));
+    // TODO update with the ReE
     if (err) {
       if (typeof err == 'object' && typeof err.message != 'undefined') {
         err = err.message;

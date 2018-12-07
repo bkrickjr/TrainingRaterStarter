@@ -26,8 +26,8 @@ module.exports = {
       aboutMe: {
         type: Sequelize.STRING
       },
-      sessionsCompleted: {
-        type: Sequelize.INTEGER
+      password: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
