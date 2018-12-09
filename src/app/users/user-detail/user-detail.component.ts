@@ -27,9 +27,13 @@ export class UsersDetailComponent implements OnInit {
           // post new
           this.user = {
               id: 0,
-              name: 'Starter Name',
-              signUpDate: '2018-11-22T15:00:00.000Z',
-              sessionsCompleted: 0,
+              first: 'Starter Name',
+              last: '',
+              email: 'default@mail.com',
+              phone: '',
+              isTrainer: false,
+              aboutMe: '',
+              password: '',
               createdAt: '',
               updatedAt: '',
           }; // new user end
@@ -54,7 +58,7 @@ export class UsersDetailComponent implements OnInit {
   } // save end
 
   private formValid(): boolean {
-    return this.user.name ? true : false;
+    return this.user.email ? true : false;
   } // formValid end
 
   cancel(): void {

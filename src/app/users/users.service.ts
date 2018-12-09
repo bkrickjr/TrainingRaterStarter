@@ -4,9 +4,13 @@ import { Observable } from 'rxjs/Observable';
 
 export interface IUser {
     id: number;
-    name: string;
-    signUpDate: string;
-    sessionsCompleted: number;
+    first: string;
+    last: string;
+    email: string;
+    phone: string;
+    isTrainer: boolean;
+    aboutMe: string;
+    password: string;
     createdAt: string;
     updatedAt: string;
 }
@@ -29,7 +33,7 @@ export class UserService {
         if (user.id) {
             return this.http.put<number[]>('http://localhost:3000/users', user);
         } else {
-            return this.http.post<number[]>('http://localhost:3000/users', user);
+            return this.http.post<IUser>('http://localhost:3000/users', user);
         } // if end
     } // save end
 } // class end

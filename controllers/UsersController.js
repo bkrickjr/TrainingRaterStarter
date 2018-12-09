@@ -57,14 +57,14 @@ module.exports.update = update;
   
 const create = async function (req, res) {
     res.setHeader('Content-Type', 'application/json');
-    let err, user, userInfo;
-    userInfo = req.body;
+    let userInfo = req.body;
 
     if (!userInfo.email) {
       return ReE(res, 'Please enter an email to register.', 422); // 422 unprocessable entity
     } else if(!userInfo.password) {
       return ReE(res, 'Please enter a password to register.', 422);
     } else {
+      let err, user
       [err, user] = await to(createUser(userInfo));
       if(err) return ReE(res, err, 422);
 
@@ -77,6 +77,7 @@ const createUser = async function(userInfo) {
   let err;
   if (validator.isEmail(userInfo.email)) {
     [err, user] = await to(Users.create(userInfo));
+    console.log(err);
     // Because we handled constraints on the usersbest.js for everything but the unique of email, that is the only expected err return
     if (err) TE('Another user already has this email.');
     return user;
