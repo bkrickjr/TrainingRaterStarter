@@ -85,3 +85,30 @@ const createUser = async function(userInfo) {
   }
 }
 module.exports.createUser = createUser;
+
+const login = async function (req, res) {
+  console.log('req.body.email: ' + req.body.email)
+  const body = req.body;
+  let err, user;
+   [err, user] = await to(authUser(req.body));
+  if (err) return ReE(res, err, 422);
+   return ReS(res, { token: user.getJWT(), user: user.toJSON() });
+}
+module.exports.login = login;
+
+const authUser = async function (userInfo) {//returns token
+  if (!userInfo.email) TE('Please enter an email to login');
+  if (!userInfo.password) TE('Please enter a password to login');
+  let user;
+ if (validator.isEmail(userInfo.email)) {
+    [err, user] = await to(Users.findOne({ where: { email: userInfo.email } }));
+   if (err) TE(err.message);
+  } else {
+   TE('A valid email was not entered');
+ }
+  if (!user) TE('Not registered');
+  [err, user] = await to(user.comparePassword(userInfo.password));
+  if (err) TE(err.message);
+  return user;
+}
+module.exports.authUser = authUser;
