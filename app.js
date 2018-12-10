@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const Users = require('./models').UsersBest;
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
+const ratings = require('./controllers/RatingsController');
 const sessions = require('./controllers/SessionsController');
 const userController = require('./controllers/UsersController');
 
@@ -76,6 +77,10 @@ app.get('/users', passport.authenticate('jwt', { session: false }), userControll
 app.get('/users/:userId', passport.authenticate('jwt', { session: false }), userController.get)
 app.post('/users', passport.authenticate('jwt', { session: false }), userController.create);
 app.put('/users', passport.authenticate('jwt', { session: false }), userController.update);
+
+app.post('/ratings/:sessionId', passport.authenticate('jwt', { session: false }), ratings.create);
+app.put('/ratings/:ratingId', ratings.update);
+//app.put('/ratings/:ratingId', passport.authenticate('jwt', { session: false }), ratings.update);
 
 // We lock out everything except for the login url because we dont want unauth users manipulating data. Front end passes the jwt around to ensure security
 app.post('/login', userController.login);
