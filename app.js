@@ -3,8 +3,8 @@ require('./global_functions');
 const express = require('express');
 const models = require('./models');
 const passport = require('passport');
-const Users = require('./models').UsersBest;
 const bodyParser = require('body-parser');
+const Users = require('./models').UsersBest;
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 const sessions = require('./controllers/SessionsController');
@@ -16,20 +16,20 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ entended: false }));
 app.use(passport.initialize());
 
-var opts = {}
+var opts = {};
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = CONFIG.jwt_encryption;
 
 passport.use(new JwtStrategy(opts, async function (jwt_payload, done) {
   let err, user;
-  [err, user] = await toString(Users.findById(jwt_payload.user_id));
+  [err, user] = await to(Users.findById(jwt_payload.user_id));
   if (err) return done(err, false);
   if (user) {
     return done (null, user);
   } else {
     return done (null, false);
   }
-}))
+}));
 
 // CORS
 app.use(function (req, res, next) {
@@ -63,27 +63,20 @@ if (CONFIG.app == 'dev') {
     // models.sequelize.sync({force: true}); will reset the data of the api every time
 }
 
-//Without Auth
-app.get('/sessions', sessions.getAll);
-app.get('/sessions/:sessionId', sessions.get);
-app.post('/sessions', sessions.create);
-app.put('/sessions', sessions.update);
+// Creating a new endpoint:
+// app . action ( string url , call this)                                          Auth not required
+// app . action ( string url , authentication , if auth is successful call this)   Auth required
 
-app.get('/users', userController.getAll)
-app.get('/users/:userId', userController.get)
-app.post('/users', userController.create);
-app.put('/users', userController.update);
+app.get('/sessions', passport.authenticate('jwt', { session: false }), sessions.getAll);
+app.get('/sessions/:sessionId', passport.authenticate('jwt', {session: false}), sessions.get);
+app.post('/sessions', passport.authenticate('jwt', {session: false}), sessions.create);
+app.put('/sessions', passport.authenticate('jwt', {session: false}), sessions.update);
 
-//With Auth
-//app.get('/sessions', passport.authenticate('jwt', {session: false}), sessions.getAll);
-//app.get('/sessions/:sessionId', passport.authenticate('jwt', {session: false}), sessions.get);
-//app.post('/sessions', passport.authenticate('jwt', {session: false}), sessions.create);
-//app.put('/sessions', passport.authenticate('jwt', {session: false}), sessions.update);
-//
-//app.get('/users', userController.getAll)
-//app.get('/users/:userId', userController.get)
-//app.post('/users', userController.create);
-//app.put('/users', userController.update);
+app.get('/users', passport.authenticate('jwt', { session: false }), userController.getAll)
+app.get('/users/:userId', passport.authenticate('jwt', { session: false }), userController.get)
+app.post('/users', passport.authenticate('jwt', { session: false }), userController.create);
+app.put('/users', passport.authenticate('jwt', { session: false }), userController.update);
 
+// We lock out everything except for the login url because we dont want unauth users manipulating data. Front end passes the jwt around to ensure security
 app.post('/login', userController.login);
 module.exports = app;
